@@ -4,37 +4,6 @@ import time
 scc = "该课程不能重复选择"
 scc1 = "选课成功"
 
-# 循环获取验证码直至成功
-while True:
-    try:
-        wust.GetRandCode('randcode.jpg')
-        # 要求用户输入验证码
-        randcode = input('Please input the Random Code:')
-    except:
-        print('获取验证码失败，进行下一次尝试')
-    else:
-        print('获取验证码成功，即将尝试登录')
-        break
-
-# 循环登录直至成功
-while True:
-    try:
-        # 保存登录状态
-        login_status = wust.Login('2017011450**', 'fgy18897514992', randcode)
-        while not login_status:
-            # 登录失败，重新获取验证码
-            wust.GetRandCode('randcode.jpg')
-            # 重新要求用户输入验证码
-            randcode = input('Please input the Random Code:')
-            # 重新保存登录状态并登录
-            login_status = wust.Login('201701145013', 'fgy18897514992', randcode)
-    except:
-        print('教务处网络状态差，尝试登录失败，进行下一次尝试')
-    else:
-        print('登录成功，即将抓取公选课列表')
-        break
-
-
 def qiangke1(urls):
     for url in urls:
         while True:
@@ -77,6 +46,36 @@ def qiangke2(kcmc,skjs,sksj,skzc,xf):
             print(i)
 
     qiangke1(UrlList)
+
+# 循环获取验证码直至成功
+while True:
+    try:
+        wust.GetRandCode('randcode.jpg')
+        # 要求用户输入验证码
+        randcode = input('Please input the Random Code:')
+    except:
+        print('获取验证码失败，进行下一次尝试')
+    else:
+        print('获取验证码成功，即将尝试登录')
+        break
+
+# 循环登录直至成功
+while True:
+    try:
+        # 保存登录状态
+        login_status = wust.Login('2017011450**', 'fgy18897514992', randcode)
+        while not login_status:
+            # 登录失败，重新获取验证码
+            wust.GetRandCode('randcode.jpg')
+            # 重新要求用户输入验证码
+            randcode = input('Please input the Random Code:')
+            # 重新保存登录状态并登录
+            login_status = wust.Login('201701145013', 'fgy18897514992', randcode)
+    except:
+        print('教务处网络状态差，尝试登录失败，进行下一次尝试')
+    else:
+        print('登录成功，即将抓取公选课列表')
+        break
 
 
         # if i['kcmc'].find(kcmc) != -1:

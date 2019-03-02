@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c70d1e98-c14d-496b-abc4-a1e0d539ee00" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/demo_自动选桥牌.py" beforeDir="false" afterPath="$PROJECT_DIR$/demo_自动选桥牌.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wust.py" beforeDir="false" afterPath="$PROJECT_DIR$/wust.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wustgui.py" beforeDir="false" afterPath="$PROJECT_DIR$/wustgui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/randcode.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/randcode.jpg" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,14 +13,14 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/wustjwxt$wustgui.coverage" NAME="wustgui Coverage Results" MODIFIED="1551503990131" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/wustjwxt$demo_.coverage" NAME="demo_自动选桥牌 Coverage Results" MODIFIED="1551504087497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/wustjwxt$test.coverage" NAME="test Coverage Results" MODIFIED="1551508585369" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/wustjwxt$demo_.coverage" NAME="demo_自动选桥牌 Coverage Results" MODIFIED="1551509861811" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="107328769">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.7" value="2" />
@@ -46,12 +45,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="645" />
+          <entry key="py" value="653" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="645" />
+          <entry key="Python" value="653" />
         </counts>
       </usages-collector>
     </session>
@@ -61,12 +60,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/demo_自动选桥牌.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1015">
-              <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
+            <state relative-caret-position="135">
+              <caret line="9" column="16" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-                <marker date="1551509616889" expanded="true" signature="1607:1608" ph="..." />
-                <marker date="1551509616889" expanded="true" signature="1607:2310" ph="..." />
+                <marker date="1551509861801" expanded="true" signature="813:814" ph="..." />
+                <marker date="1551509861801" expanded="true" signature="813:2309" ph="..." />
               </folding>
             </state>
           </provider>
@@ -149,7 +148,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1920" />
     <option name="height" value="975" />
@@ -192,7 +191,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.test">
+  <component name="RunManager" selected="Python.demo_自动选桥牌">
     <configuration name="demo_自动选桥牌" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="wustjwxt" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -266,8 +265,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.test" />
         <item itemvalue="Python.demo_自动选桥牌" />
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.wustgui" />
       </list>
     </recent_temporary>
@@ -286,15 +285,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="975" extended-state="1" />
+    <frame x="0" y="23" width="1920" height="975" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.08839191" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.08839191" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.37599093" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.37599093" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -363,12 +362,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/demo_自动选桥牌.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1015">
-          <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
+        <state relative-caret-position="135">
+          <caret line="9" column="16" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1551509616889" expanded="true" signature="1607:1608" ph="..." />
-            <marker date="1551509616889" expanded="true" signature="1607:2310" ph="..." />
+            <marker date="1551509861801" expanded="true" signature="813:814" ph="..." />
+            <marker date="1551509861801" expanded="true" signature="813:2309" ph="..." />
           </folding>
         </state>
       </provider>
