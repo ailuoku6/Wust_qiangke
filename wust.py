@@ -1,5 +1,8 @@
 import requests
 import re
+import time
+from bs4 import BeautifulSoup
+import Model
 
 headers = {
     "User-Agent":"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.110 Safari/537.36",
@@ -27,43 +30,14 @@ def Login(username, password, randcode):
     else:
         return False
 
-# def GetCoursesList():
-#     url = r'http://jwxt.wust.edu.cn/whkjdx/xkglAction.do?method=toFindxskxkclb&xnxq01id=2017-2018-2&zzdxklbname=1&type=1&jx02kczid=null'
-#     ans = foo.get(url, headers = headers)
-#     ans.raise_for_status()
-#     ans.encoding = ans.apparent_encoding
-#     CoursesList = re.findall(r'<td height="23"  style="text-overflow:ellipsis; white-space:nowrap; overflow:hidden;" width="\d+" title=".*"', ans.text)
-#     XKLJList = re.findall("javascript:vJsMod\(\'.*\'", ans.text)
-#     keyname = ['kcmc', 'kkdw', 'zyfx', 'xf', 'yxrs', 'yl', 'skjs', 'skzc', 'sksj', 'skdd', 'kcsx', 'kcxz', 'fzm', 'xbyq']
-#     result = []
-#     item = {}
-#     bar = 0
-#     index = 0
-#     for i in CoursesList:
-#         Left = i.find(r'title="')
-#         Right = i[Left + 7:].find(r'"')
-#         text = i[Left + 7:Left + Right + 7]
-#         #print(i)
-#         #print(text)
-#         item[keyname[bar]] = text
-#         bar = bar + 1
-#         if (bar == 14):
-#             Left = XKLJList[index].find("'")
-#             Right = XKLJList[index][Left + 1:].find("'")
-#             text = XKLJList[index][Left + 1:Left + Right + 1]
-#             item['xklj'] = text
-#             index = index + 1
-#
-#             result.append(item)
-#             item = {}
-#             bar = 0
-#     return result
-
 def GetCoursesListByUrl(url):
 
-    ans = foo.get(url,headers = headers)
+    link = GetframeLink(url)
+
+    ans = foo.get(link,headers = headers)
     ans.raise_for_status()
     ans.encoding = ans.apparent_encoding
+    #print(ans.text)
     CoursesList = re.findall(r'<td height="23"  style="text-overflow:ellipsis; white-space:nowrap; overflow:hidden;" width="\d+" title=".*"',ans.text)
     XKLJList = re.findall("javascript:vJsMod\(\'.*\'", ans.text)
     keyname = ['kcmc', 'kkdw', 'zyfx', 'xf', 'yxrs', 'yl', 'skjs', 'skzc', 'sksj', 'skdd', 'kcsx', 'kcxz', 'fzm','xbyq']
@@ -91,70 +65,123 @@ def GetCoursesListByUrl(url):
             bar = 0
     return result
 
-
-def GetCoursesList():
-    url = r'http://jwxt.wust.edu.cn/whkjdx/xkglAction.do?method=toXk&xnxq=2018-2019-2&zzdxklbname=9&type=1&xkkssj=2019-03-01%2014:15&xkjzsj=2019-03-06%2014:30&jx0502id=85&jx0502zbid=149&xkfs=0&tktime=1551446958000'
-    ans = foo.get(url, headers = headers)
+def GetframeLink(url):
+    ans = foo.get(url,headers = headers)
     ans.raise_for_status()
     ans.encoding = ans.apparent_encoding
-    CoursesList = re.findall(r'<td height="23"  style="text-overflow:ellipsis; white-space:nowrap; overflow:hidden;" width="\d+" title=".*"', ans.text)
-    XKLJList = re.findall("javascript:vJsMod\(\'.*\'", ans.text)
-    keyname = ['kcmc', 'kkdw', 'zyfx', 'xf', 'yxrs', 'yl', 'skjs', 'skzc', 'sksj', 'skdd', 'kcsx', 'kcxz', 'fzm', 'xbyq']
+
+    #print(ans.text)
+
+    soup = BeautifulSoup(ans.text)
+    frame = soup.find(id = "mainFrame")
+
+    #print(frame)
+
+    link = "http://jwxt.wust.edu.cn" + str(BeautifulSoup(str(frame)).frame['src']).replace(' ','%20')
+
+    #print(link)
+
+    ans1 = foo.get(link,headers = headers)
+    ans1.raise_for_status()
+    ans1.encoding = ans1.apparent_encoding
+
+    soup1 = BeautifulSoup(ans1.text)
+
+    frame1 = soup1.find(id = "centerFrame")
+
+    link1 = "http://jwxt.wust.edu.cn" + str(BeautifulSoup(str(frame1)).frame['src']).replace(' ','%20')
+
+    #print(link1)
+
+    return link1
+
+
+def GetXuankeList():
+
+    url = r'http://jwxt.wust.edu.cn/whkjdx/xkglAction.do?method=xsxkXsxk&tktime=1551747139000'
+
     result = []
-    item = {}
-    bar = 0
-    index = 0
-    for i in CoursesList:
-        Left = i.find(r'title="')
-        Right = i[Left + 7:].find(r'"')
-        text = i[Left + 7:Left + Right + 7]
-        #print(i)
-        #print(text)
-        item[keyname[bar]] = text
-        bar = bar + 1
-        if (bar == 14):
-            Left = XKLJList[index].find("'")
-            Right = XKLJList[index][Left + 1:].find("'")
-            text = XKLJList[index][Left + 1:Left + Right + 1]
-            item['xklj'] = text
-            index = index + 1
 
-            result.append(item)
-            item = {}
-            bar = 0
-    return result
+    #url = r'http://jwxt.wust.edu.cn/whkjdx/xkglAction.do'
+    # pa = {"method":"xsxkXsxk","tktime":str(int(time.time() * 1000))}
+    #
+    # print(pa.get("tktime"))
 
-def GetCoursesList2():
-    url = r'http://jwxt.wust.edu.cn/whkjdx/xkglAction.do?method=toFindxskxkclb&xnxq01id=2017-2018-2&zzdxklbname=6&type=1&jx02kczid=null'
-    ans = foo.get(url, headers = headers)
+    ans = foo.get(url,headers = headers)
+
     ans.raise_for_status()
     ans.encoding = ans.apparent_encoding
-    CoursesList = re.findall(r'<td height="23"  style="text-overflow:ellipsis; white-space:nowrap; overflow:hidden;" width="\d+" title=".*"', ans.text)
-    XKLJList = re.findall("javascript:vJsMod\(\'.*\'", ans.text)
-    keyname = ['kcmc', 'kkdw', 'zyfx', 'xf', 'yxrs', 'yl', 'skjs', 'skzc', 'sksj', 'skdd', 'kcsx', 'kcxz', 'fzm', 'xbyq']
-    result = []
-    item = {}
-    bar = 0
-    index = 0
-    for i in CoursesList:
-        Left = i.find(r'title="')
-        Right = i[Left + 7:].find(r'"')
-        text = i[Left + 7:Left + Right + 7]
-        #print(i)
-        #print(text)
-        item[keyname[bar]] = text
-        bar = bar + 1
-        if (bar == 14):
-            Left = XKLJList[index].find("'")
-            Right = XKLJList[index][Left + 1:].find("'")
-            text = XKLJList[index][Left + 1:Left + Right + 1]
-            item['xklj'] = text
-            index = index + 1
 
-            result.append(item)
-            item = {}
-            bar = 0
+    soup = BeautifulSoup(ans.text)
+
+    Xuankelist = soup.find_all(class_ = "smartTr")
+
+    for xuankeL in Xuankelist:
+        xuank = Model.xuanke()
+
+        td = BeautifulSoup(str(xuankeL))
+
+        tds = td.find_all("td")
+
+        xuank.index_ = BeautifulSoup(str(tds[0])).text
+
+        xuank.xueqi = BeautifulSoup(str(tds[1])).text
+
+        xuank.name_ = BeautifulSoup(str(tds[2])).text
+
+        xuank.jieduan_ = BeautifulSoup(str(tds[3])).text
+
+        xuank.StartTime = BeautifulSoup(str(tds[4])).text
+
+        xuank.EndTime = BeautifulSoup(str(tds[5])).text
+
+        #xuank.Link = BeautifulSoup(str(tds[6])).a['onclick']
+
+        strs = str(BeautifulSoup(str(tds[6])).a['onclick']).split("'")
+
+        xuank.Link = strs[1]
+
+        result.append(xuank)
+
+        # print(xuank.name_)
+        # print(xuank.Link)
+
     return result
+
+
+
+# def GetCoursesList():
+#     url = r'http://jwxt.wust.edu.cn/whkjdx/xkglAction.do?method=toXk&xnxq=2018-2019-2&zzdxklbname=9&type=1&xkkssj=2019-03-01%2014:15&xkjzsj=2019-03-06%2014:30&jx0502id=85&jx0502zbid=149&xkfs=0&tktime=1551446958000'
+#     ans = foo.get(url, headers = headers)
+#     ans.raise_for_status()
+#     ans.encoding = ans.apparent_encoding
+#     print(ans.text)
+#     CoursesList = re.findall(r'<td height="23"  style="text-overflow:ellipsis; white-space:nowrap; overflow:hidden;" width="\d+" title=".*"', ans.text)
+#     XKLJList = re.findall("javascript:vJsMod\(\'.*\'", ans.text)
+#     keyname = ['kcmc', 'kkdw', 'zyfx', 'xf', 'yxrs', 'yl', 'skjs', 'skzc', 'sksj', 'skdd', 'kcsx', 'kcxz', 'fzm', 'xbyq']
+#     result = []
+#     item = {}
+#     bar = 0
+#     index = 0
+#     for i in CoursesList:
+#         Left = i.find(r'title="')
+#         Right = i[Left + 7:].find(r'"')
+#         text = i[Left + 7:Left + Right + 7]
+#         #print(i)
+#         #print(text)
+#         item[keyname[bar]] = text
+#         bar = bar + 1
+#         if (bar == 14):
+#             Left = XKLJList[index].find("'")
+#             Right = XKLJList[index][Left + 1:].find("'")
+#             text = XKLJList[index][Left + 1:Left + Right + 1]
+#             item['xklj'] = text
+#             index = index + 1
+#
+#             result.append(item)
+#             item = {}
+#             bar = 0
+#     return result
 
 def ChoseCourseByLink(link):
     url = 'http://jwxt.wust.edu.cn' + link
@@ -162,3 +189,15 @@ def ChoseCourseByLink(link):
     ans.raise_for_status()
     ans.encoding = ans.apparent_encoding
     return ans.text
+
+def getRandomUrl(htmlurl):
+    count = str(htmlurl).find('?')
+
+    t = str(int(time.time() * 1000))
+
+    if count<0:
+        htmlurl = htmlurl + "?tktime=" + t;
+    else:
+        htmlurl = htmlurl + "&tktime=" + t;
+
+    return htmlurl
