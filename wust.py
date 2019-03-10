@@ -53,7 +53,7 @@ def GetKechengListByUrl(url):
         kec.zhouci = BeautifulSoup(str(tds[8])).text
         kec.time = BeautifulSoup(str(tds[9])).text
         link = str(BeautifulSoup(str(BeautifulSoup(str(tds[15])).find("a"))).a['onclick'])
-        kec.xuankeLink = "http://jwxt.wust.edu.cn" + link.split("'")[1]
+        kec.xuankeLink = link.split("'")[1]
 
         kecheng.append(kec)
 
