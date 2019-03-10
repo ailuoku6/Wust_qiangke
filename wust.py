@@ -30,6 +30,36 @@ def Login(username, password, randcode):
     else:
         return False
 
+def GetKechengListByUrl(url):
+    link = GetframeLink(url)
+
+    kecheng = []
+
+    ans = foo.get(link, headers=headers)
+    ans.raise_for_status()
+    ans.encoding = ans.apparent_encoding
+
+    soup = BeautifulSoup(ans.text)
+
+    kechengList = soup.find_all(class_ = "smartTr")
+
+    for ke in kechengList:
+        tds = BeautifulSoup(str(ke)).find_all("td")
+        kec = Model.kecheng()
+
+        kec.name = BeautifulSoup(str(tds[1])).text
+        kec.xf = BeautifulSoup(str(tds[4])).text
+        kec.teacher = BeautifulSoup(str(tds[7])).td['title']
+        kec.zhouci = BeautifulSoup(str(tds[8])).text
+        kec.time = BeautifulSoup(str(tds[9])).text
+        link = str(BeautifulSoup(str(BeautifulSoup(str(tds[15])).find("a"))).a['onclick'])
+        kec.xuankeLink = "http://jwxt.wust.edu.cn" + link.split("'")[1]
+
+        kecheng.append(kec)
+
+    return kecheng
+
+
 def GetCoursesListByUrl(url):
 
     link = GetframeLink(url)

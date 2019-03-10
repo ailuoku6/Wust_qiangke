@@ -6,3 +6,11 @@ class xuanke:
     StartTime = ""
     EndTime = ""
     Link = ""
+
+class kecheng:
+    name = ""
+    teacher = ""
+    time = ""
+    zhouci = ""
+    xf = ""
+    xuankeLink = ""
